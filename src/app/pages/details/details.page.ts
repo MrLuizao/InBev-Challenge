@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
 
 @Component({
   selector: 'app-details',
@@ -8,11 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailsPage implements OnInit {
   
-  title: string;
-  constructor( private route: ActivatedRoute ) { }
+  constructor( private behaviorSrv: BehaviourDataService ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe( (param) => this.title = param.title );
+    this.behaviorSrv.$getarrayTapBind.subscribe( (resp)=>{
+      console.log('$getarrayTapBind',resp);
+    }).unsubscribe();
   }
 
 }

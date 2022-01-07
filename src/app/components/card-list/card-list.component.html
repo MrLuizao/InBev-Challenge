@@ -1,12 +1,16 @@
 
-<ion-card *ngFor="let item of itemCards">
-  <ion-card-header>
-    <ion-card-subtitle>{{item.biography.fullName}}</ion-card-subtitle>
-    <ion-card-title>{{item.name}}</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
-    Keep close to Nature's heart... and break clear away, once in awhile,
-    and climb a mountain or spend a week in the woods. Wash your spirit clean.
-  </ion-card-content>
-</ion-card>
+<ion-col size="12">
+  <ion-row *ngFor="let item of itemCards">
+    <ion-card (click)="tapSingleCard(item)">
+      <ion-card-header>
+        <ion-card-subtitle>{{item.biography.fullName}}</ion-card-subtitle>
+        <ion-card-title>{{item.name}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Keep close to Nature's heart... and break clear away, once in awhile,
+        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+</ion-col>

@@ -1,8 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
 
@@ -11,12 +6,14 @@
       <h1> SELECT A BRAND </h1>
     </ion-row>
     <ion-row>
-      <ion-col size="6" (click)="filterByBrand('Marvel Comics')">
+      <ion-col (click)="filterByBrand('Marvel Comics')">
         <div style="height: 5em; background-color: red; color: white;">
           Marvel
         </div>
       </ion-col>
-      <ion-col size="6" (click)="filterByBrand('DC Comics')">
+    </ion-row>
+    <ion-row>
+      <ion-col (click)="filterByBrand('DC Comics')">
         <div style="height: 5em; background-color: blue; color: white;">
           DC Comics
         </div>

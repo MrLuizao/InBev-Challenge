@@ -22,6 +22,7 @@ export class DashboardPage implements OnInit {
   reduxObj$: Observable<HeroDetailsModel>
   heroModel: HeroDetailsModel;
   filterItem: any = [];
+  arrayFromRedux: HeroDetailsModel;
 
   constructor(  private apiService: ApiDataService,
                 private behaviorSrv: BehaviourDataService,
@@ -34,21 +35,21 @@ export class DashboardPage implements OnInit {
 
     this.apiService.getCompleteJsonData().subscribe( (data: HeroDetailsModel)=>{
       this.heroModel = data;
-      this.store.dispatch(new SetActions.SetObject(this.heroModel) )
-      console.log('OBJECT IN REDUX',this.reduxObj$['actionsObserver']['_value'].payload);
+      this.store.dispatch(new SetActions.SetObject(this.heroModel) );
+      this.arrayFromRedux = this.reduxObj$['actionsObserver']['_value'].payload;
+      console.log('ARRAY STORAGED IN REDUX',this.arrayFromRedux);
     });
-
 
   }
 
   filterByBrand(param: string){
     
-    this.filterItem = this.heroModel;
+    this.filterItem = this.arrayFromRedux;
     const DATA_FILTERED = this.filterItem.filter( (item:HeroDetailsModel) => item.biography.publisher === param);
     this.behaviorSrv.bindingObjectData(DATA_FILTERED);
     this.router.navigateByUrl('details');
 
-    this.router.navigate(['/details'], { queryParams: { title: param } });
+    this.router.navigate(['/publisher'], { queryParams: { title: param } });
 
   }
 
