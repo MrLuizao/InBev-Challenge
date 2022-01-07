@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as SetActions from 'src/app/Redux/actions/object.actions';
+import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
+import { Router } from '@angular/router';
 
 interface AppState {
   object: HeroDetailsModel;
@@ -22,6 +24,8 @@ export class DashboardPage implements OnInit {
   filterItem: any = [];
 
   constructor(  private apiService: ApiDataService,
+                private behaviorSrv: BehaviourDataService,
+                public router: Router,
                 private store: Store<AppState>  ) { 
                   this.reduxObj$ = this.store.select('object');
                 }
@@ -38,11 +42,14 @@ export class DashboardPage implements OnInit {
   }
 
   filterByBrand(param: string){
-
+    
     this.filterItem = this.heroModel;
-    const DATA_FILTERED = this.filterItem.filter( (item:HeroDetailsModel) => item.biography.publisher === param)
-    console.log('DATA_FILTERED', DATA_FILTERED);
-     
+    const DATA_FILTERED = this.filterItem.filter( (item:HeroDetailsModel) => item.biography.publisher === param);
+    this.behaviorSrv.bindingObjectData(DATA_FILTERED);
+    this.router.navigateByUrl('details');
+
+    this.router.navigate(['/details'], { queryParams: { title: param } });
+
   }
 
 }

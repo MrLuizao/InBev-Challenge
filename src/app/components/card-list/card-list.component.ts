@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroDetailsModel } from 'src/app/Models/hero-details.model';
+import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
 
 @Component({
   selector: 'app-card-list',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardListComponent implements OnInit {
 
-  constructor( ) { }
+  itemCards: HeroDetailsModel;
 
-  ngOnInit() {}
+  constructor( private behaviorSrv: BehaviourDataService ) { }
+
+  ngOnInit() {
+    this.behaviorSrv.$getObjectSource.subscribe( (resp: HeroDetailsModel)=>{
+      this.itemCards = resp;
+      console.log('this.itemCards', this.itemCards);
+    }).unsubscribe();
+  }
 
 }
