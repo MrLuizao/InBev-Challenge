@@ -1,5 +1,5 @@
 
-export class HeroDetailsModel{
+export interface HeroDetailsModel{
 
     id: number;
     name: string;
