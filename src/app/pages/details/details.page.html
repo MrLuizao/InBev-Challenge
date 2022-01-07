@@ -1,12 +1,34 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="secondary" mode="md"></ion-back-button>
+      <ion-back-button mode="md"></ion-back-button>
     </ion-buttons>
-    <ion-title>Details page</ion-title>
+    <ion-title>{{heroDetail.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div>
+    <img [src]="imgBackGround">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4"></ion-col>
+      <ion-col size="8">
+        <ion-card>
+          <ion-card-content>
+            <p> Alignment : {{heroDetail.biography.alignment | uppercase}}</p>
+            <p> Height : {{heroDetail.appearance.height[0]}}</p>
+            <p> Combat : {{heroDetail.powerstats.combat}} %</p>
+            <p> Intelligence : {{heroDetail.powerstats.intelligence}} %</p>
+            <p> Power : {{heroDetail.powerstats.power}} %</p>
+            <p> Speed : {{heroDetail.powerstats.speed}} %</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
   
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeroDetailsModel } from 'src/app/Models/hero-details.model';
 import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
 })
 export class DetailsPage implements OnInit {
   
+  heroDetail: HeroDetailsModel;
+  imgBackGround: string;
+
   constructor( private behaviorSrv: BehaviourDataService ) { }
 
   ngOnInit() {
-    this.behaviorSrv.$getarrayTapBind.subscribe( (resp)=>{
-      console.log('$getarrayTapBind',resp);
+    this.behaviorSrv.$getarrayTapBind.subscribe( (resp: HeroDetailsModel)=>{
+      this.heroDetail = resp;
+      this.imgBackGround = this.heroDetail.images.lg;
     }).unsubscribe();
   }
 
