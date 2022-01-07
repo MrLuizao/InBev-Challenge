@@ -11,6 +11,7 @@ import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
 export class CardListComponent implements OnInit {
 
   itemCards: HeroDetailsModel;
+  textToFind: string;
 
   constructor(  private behaviorSrv: BehaviourDataService,
                 public router: Router ) { }
@@ -19,6 +20,10 @@ export class CardListComponent implements OnInit {
     this.behaviorSrv.$getObjectSource.subscribe( (resp: HeroDetailsModel) => {
       this.itemCards = resp;
     }).unsubscribe();
+  }
+
+  findNameHero(event){
+    this.textToFind = event.detail.value;
   }
 
   tapSingleCard( args: HeroDetailsModel ){

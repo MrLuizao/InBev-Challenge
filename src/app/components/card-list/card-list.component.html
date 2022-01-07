@@ -1,6 +1,11 @@
 
 <ion-col size="12">
-  <ion-row *ngFor="let item of itemCards">
+  <ion-row>
+    <ion-col >
+      <ion-searchbar class="mt-2-large query-wrap" placeholder="Buscar por nombre" (ionChange)="findNameHero($event)"></ion-searchbar>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngFor="let item of itemCards |  searchHero: textToFind " >
     <ion-card (click)="tapSingleCard(item)">
       <ion-card-header>
         <ion-card-subtitle>{{item.biography.fullName}}</ion-card-subtitle>
