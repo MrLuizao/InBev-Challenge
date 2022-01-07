@@ -1,25 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title mode="md"> Select a crew... </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
 
-  <ion-grid>
-    <ion-row>
-      <h1> SELECT A BRAND </h1>
-    </ion-row>
-    <ion-row>
-      <ion-col (click)="filterByBrand('Marvel Comics')">
-        <div style="height: 5em; background-color: red; color: white;">
-          Marvel
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col (click)="filterByBrand('DC Comics')">
-        <div style="height: 5em; background-color: blue; color: white;">
-          DC Comics
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+  <ion-text color="medium"> 
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" (click)="filterByBrand('Marvel Comics')" class="logo-float-one">
+          <img src="../assets/images/marvel-logo.png">
+        </ion-col>
+        <ion-col size="6" (click)="filterByBrand('DC Comics')" class="logo-float-two">
+          <img src="../assets/images/dc-comics.png">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-text>
 
 </ion-content>

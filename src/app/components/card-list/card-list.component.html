@@ -1,8 +1,10 @@
 
 <ion-col size="12">
   <ion-row>
-    <ion-col >
-      <ion-searchbar class="mt-2-large query-wrap" placeholder="Buscar por nombre" (ionChange)="findNameHero($event)"></ion-searchbar>
+    <ion-col>
+      <ion-searchbar  class="mt-2-large query-wrap" placeholder="search by name" 
+                      (ionChange)="findNameHero($event)" mode="ios">
+      </ion-searchbar>
     </ion-col>
   </ion-row>
   <ion-row *ngFor="let item of itemCards |  searchHero: textToFind " >
@@ -13,8 +15,20 @@
       </ion-card-header>
     
       <ion-card-content>
-        Keep close to Nature's heart... and break clear away, once in awhile,
-        and climb a mountain or spend a week in the woods. Wash your spirit clean.
+        <ion-row>
+          <p> {{item.connections.groupAffiliation}} </p>
+        </ion-row>
+        <ion-row>
+          <img [src]="item.images.sm">
+        </ion-row>
+        <ion-row>
+          <ion-col size="11" style="text-align: end;">
+            <span>Details</span>
+          </ion-col>
+          <ion-col size="1" style="text-align: center;">
+            <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+          </ion-col>
+        </ion-row>
       </ion-card-content>
     </ion-card>
   </ion-row>
