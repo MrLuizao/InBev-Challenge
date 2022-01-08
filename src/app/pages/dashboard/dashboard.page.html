@@ -1,11 +1,12 @@
-<ion-header>
+<app-loader *ngIf="loading"></app-loader>
+
+<ion-header *ngIf="!loading">
   <ion-toolbar>
     <ion-title mode="md"> Select a crew... </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="!loading">
   <ion-text color="medium"> 
     <ion-grid>
       <ion-row>
@@ -18,5 +19,4 @@
       </ion-row>
     </ion-grid>
   </ion-text>
-
 </ion-content>

@@ -7,11 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { setReducer } from 'src/app/Redux/reducers/object.reducer';
-import { SearchHeroPipe } from './pipes/search-hero.pipe';
-
 
 @NgModule({
-  declarations: [AppComponent, SearchHeroPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 

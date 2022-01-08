@@ -19,6 +19,7 @@ interface AppState {
 })
 export class DashboardPage implements OnInit {
 
+  loading: boolean;
   reduxObj$: Observable<HeroDetailsModel>
   heroModel: HeroDetailsModel;
   filterItem: any = [];
@@ -33,23 +34,25 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
 
+    this.loading = false;
     this.apiService.getCompleteJsonData().subscribe( (data: HeroDetailsModel)=>{
       this.heroModel = data;
       this.store.dispatch(new SetActions.SetObject(this.heroModel) );
       this.arrayFromRedux = this.reduxObj$['actionsObserver']['_value'].payload;
       console.log('ARRAY STORAGED IN REDUX',this.arrayFromRedux);
     });
-
   }
 
   filterByBrand(param: string){
-    
-    this.filterItem = this.arrayFromRedux;
-    const DATA_FILTERED = this.filterItem.filter( (item:HeroDetailsModel) => item.biography.publisher === param);
-    this.behaviorSrv.bindingObjectData(DATA_FILTERED);
-    this.router.navigateByUrl('details');
+    this.loading = true;
 
-    this.router.navigate(['/publisher'], { queryParams: { title: param } });
+    setTimeout( ()=> {
+      this.filterItem = this.arrayFromRedux;
+      const DATA_FILTERED = this.filterItem.filter( (item:HeroDetailsModel) => item.biography.publisher === param);
+      this.behaviorSrv.bindingObjectData(DATA_FILTERED);
+      this.router.navigate(['/publisher'], { queryParams: { title: param } });
+      this.loading = false;
+    },700);
 
   }
 

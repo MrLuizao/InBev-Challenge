@@ -8,17 +8,24 @@ import { BehaviourDataService } from 'src/app/services/behaviour-data.service';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
-  
+
+  loading: boolean;
   heroDetail: HeroDetailsModel;
   imgBackGround: string;
 
   constructor( private behaviorSrv: BehaviourDataService ) { }
 
   ngOnInit() {
-    this.behaviorSrv.$getarrayTapBind.subscribe( (resp: HeroDetailsModel)=>{
-      this.heroDetail = resp;
-      this.imgBackGround = this.heroDetail.images.lg;
-    }).unsubscribe();
+    this.loading = true;
+    console.log(this.loading);
+    
+    setTimeout( ()=>{
+      this.behaviorSrv.$getarrayTapBind.subscribe( (resp: HeroDetailsModel)=>{
+        this.heroDetail = resp;
+        this.imgBackGround = this.heroDetail.images.lg;
+        this.loading = false;
+      }).unsubscribe();
+    }, 500)
   }
 
 }
