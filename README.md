@@ -19,6 +19,7 @@ npm run build
 
 - iOS
 npm install @capacitor/ios
+npx cap init
 npx cap add ios
 npx cap sync
 npx cap open ios
@@ -26,6 +27,7 @@ npx cap open ios
 
 -ANDROID
 npm install @capacitor/android
+npx cap init
 npx cap add android
 npx cap sync
 npx cap open android
